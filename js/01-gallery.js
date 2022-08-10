@@ -35,9 +35,15 @@ function onPaletteContainerClick(evt) {
 `);
   instance.show();
   window.addEventListener("keydown", onEscapePress);
+  window.addEventListener("click", onClick);
 }
+
 function onCloseModalWithEscape() {
   window.removeEventListener("keydown", onEscapePress);
+}
+
+function onCloseModal() {
+  window.removeEventListener("click", onClick);
 }
 
 function onEscapePress(evt) {
@@ -46,4 +52,13 @@ function onEscapePress(evt) {
     const modal = document.querySelector(".basicLightbox");
     modal.remove(".basicLightbox");
   }
+}
+
+function onClick(evt) {
+  if (!evt.target.classList.contains(".basicLightbox")) {
+    return;
+  }
+  onCloseModal();
+  const modal = document.querySelector(".basicLightbox");
+  modal.remove(".basicLightbox");
 }
